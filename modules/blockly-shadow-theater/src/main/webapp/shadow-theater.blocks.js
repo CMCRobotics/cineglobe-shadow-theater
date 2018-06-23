@@ -1,686 +1,194 @@
 /*
  * Required blocks :
    * Station functions (hard coded)
-   * Lighting effects
-      * On / Off
-      * Wave
-      * Lightning
-   * Camera control
-      * Tilt up
-      * Tilt down
-      * Pan right
-      * Pan left
-   * Motors control
-      * Move forward 1 s (compensated)
-      * Move backward 1 s (compensated)
-      * 360 rotation on the spot
-   * Sound control
-      * play one of the five elements
  */
 
-
-
-Blockly.Blocks['draw_loop'] = {
+Blockly.Blocks['sound_fire'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW LOOP"]);
-    this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_MAIN PYGAMEZERO DRAW LOOP"]);
-//    this.setDeletable(false);
-
-  }
-};
-
-Blockly.Blocks['update_loop'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_UPDATE LOOP"]);
-    this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_MAIN PYGAMEZERO UPDATE LOOP"]);
-//    this.setDeletable(false);
-
-  }
-};
-
-Blockly.Blocks['on_touch_event'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_WHEN THE TOUCH SCREEN IS "])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_PRESSED","ON_MOUSE_DOWN"], [BLOCKLY.MSG."RELEASED","ON_MOUSE_UP"] ]), "EVENT"]);
-    this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_EXECUTES CODE WHEN THE TOUCHSCREEN IS PRESSED OR RELEASED"]);
-
-  }
-};
-
-Blockly.Blocks['on_drag_event'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_WHEN THE TOUCH SCREEN IS DRAGGED"]);
-    this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_EXECUTES CODE WHEN A FINGER IS DRAGGED ACROSS THE TOUCHSCREEN"]);
-
-  }
-};
-
-Blockly.Blocks['get_last_touch_position'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_GET TOUCH POSITION"]);
-    this.setColour(120);
-    this.setOutput(true,"Position");
-    this.setTooltip(Blockly.Msg["PGZ_RETURNS THE TOUCH POSITION"]);
-
-  }
-};
-
-Blockly.Blocks['get_last_touch_position_property'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_GET THE"])
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["PGZ_X COORDINATE","0"], [BLOCKLY.MSG."Y COORDINATE","1"]]), "PROPERTY"])
-        .appendField(Blockly.Msg["PGZ_OF THE TOUCH POSITION"]);
-    this.setOutput(true, "Number");
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_GET A COORDINATE PROPERTY VALUE FROM THE LAST TOUCH (INSIDE A TOUCHSCREEN EVENT HANDLER ONLY !)"]);
-
-  }
-};
-
-
-
-Blockly.Blocks['get_last_drag_distance'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_GET DRAG DISTANCE"]);
-    this.setColour(120);
-    this.setOutput(true,"Position");
-    this.setTooltip(Blockly.Msg["PGZ_RETURNS THE RELATIVE DISTANCE OF THE DRAG EVENT"]);
-
-  }
-};
-
-Blockly.Blocks['actor'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_ADD A NEW GAME ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "NAME")
-        .appendField(Blockly.Msg["PGZ_ANCHORED BY ITS"])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_TOP LEFT" ,"('LEFT','TOP')"], [BLOCKLY.MSG."CENTER" ,"('CENTER','MIDDLE')"], [BLOCKLY.MSG."MIDDLE TOP" ,"('CENTER','TOP')"], [BLOCKLY.MSG."TOP RIGHT" ,"('RIGHT','TOP')"], [BLOCKLY.MSG."MIDDLE LEFT" ,"('LEFT','MIDDLE')"], [BLOCKLY.MSG."MIDDLE RIGHT" ,"('RIGHT', 'MIDDLE')"], [BLOCKLY.MSG."BOTTOM LEFT" ,"('LEFT','BOTTOM')"], [BLOCKLY.MSG."MIDDLE BOTTOM","('CENTER','BOTTOM')"], [BLOCKLY.MSG."BOTTOM RIGHT" ,"('RIGHT','BOTTOM')"]]), "ANCHOR"])
-        .appendField(Blockly.Msg["PGZ_AT POSITION X"])
-        .appendField(new Blockly.FieldNumber(0), "POSX")
-        .appendField(Blockly.Msg["PGZ_Y"])
-        .appendField(new Blockly.FieldNumber(0), "POSY");
+        .appendField(new Blockly.FieldImage("assets/images/sound_fire.png", 80, 80, "Play the 'fire' sound"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setInputsInline(true);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_DEFINE A NEW ACTOR IN THE GAME"]);
-
-  }
-};
-
-Blockly.Blocks['actor_image'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_UPDATE ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR")
-        .appendField(Blockly.Msg["PGZ_WITH IMAGE"]);
-    this.appendValueInput("IMAGE")
-        .setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_CHANGE THE ACTOR TO ANOTHER IMAGE"]);
-
-  }
-};
-
-Blockly.Blocks['get_actor_property'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_GET THE"])
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["PGZ_X COORDINATE","X"], [BLOCKLY.MSG."Y COORDINATE","Y"]]), "PROPERTY"])
-        .appendField(Blockly.Msg["PGZ_POSITION OF ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR");
-    this.setOutput(true, "Number");
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_GET A PROPERTY VALUE FROM AN ACTOR"]);
-
-  }
-};
-
-Blockly.Blocks['actor_position'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_MOVE ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR")
-        .appendField(Blockly.Msg["PGZ_TO POSITION X"]);
-    this.appendValueInput("POSX")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_Y"]);
-    this.appendValueInput("POSY")
-        .setCheck("Number");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_MOVE THE CHARACTER TO A GIVEN POSITION"]);
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['actor_position_tuple'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_MOVE ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR")
-        .appendField(Blockly.Msg["PGZ_TO POSITION TUPLE"]);
-    this.appendValueInput("POS")
-        .setCheck("Position");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_MOVE THE CHARACTER TO A GIVEN POSITION USING A TUPLE"]);
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['actor_colliding'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR")
-        .appendField(Blockly.Msg["PGZ_COLLIDING WITH POSITION"]);
-    this.appendValueInput("POSITION")
-        .setCheck("Position");
-    this.setInputsInline(true);
-    this.setOutput(true, "Boolean");
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_RETURNS TRUE IF THE ACTOR IS COLLIDING WITH THE GIVEN POSITION"]);
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['actor_colliding_rect'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR")
-        .appendField(Blockly.Msg["PGZ_COLLIDING WITH RECTANGLE OR ACTOR"]);
-    this.appendValueInput("RECTANGLE")
-        .setCheck(null);
-    this.setInputsInline(true);
-    this.setOutput(true, "Boolean");
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_RETURNS TRUE IF THE ACTOR IS COLLIDING WITH THE GIVEN RECTANGLE"]);
-    this.setHelpUrl("");
-  }
-};
-
-
-
-Blockly.Blocks['actor_draw'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW ACTOR"])
-        .appendField(new Blockly.FieldVariable("item"), "ACTOR");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_DRAW THE ACTOR ON THE SCREEN AT ITS SET POSITION"]);
-    this.setHelpUrl("");
-  }
-};
-
-
-var animateBlocks = ['animate_position'];
-
-Blockly.Blocks['animate'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_ANIMATE OBJECT"])
-        .appendField(new Blockly.FieldVariable("item"), "OBJECT");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_USING TWEENING MODE"])
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg["PGZ_LINEAR","LINEAR"], [BLOCKLY.MSG."ACCELERATE",'ACCELERATE'], [BLOCKLY.MSG."DECELERATE",'DECELERATE'], [BLOCKLY.MSG."ACCELERATE THEN DECELERATE",'ACCEL_DECEL'], [BLOCKLY.MSG."ELASTIC AT THE END",'END_ELASTIC'], [BLOCKLY.MSG."ELASTIC AT THE START",'START_ELASTIC'], [BLOCKLY.MSG."ELASTIC AT START AND END",'BOTH_ELASTIC'], [BLOCKLY.MSG."BOUNCE AT THE END",'BOUNCE_END'], [BLOCKLY.MSG."BOUNCE AT THE START",'BOUNCE_START'], [BLOCKLY.MSG."BOUNCE AT THE START AND END",'BOUNCE_START_END']]), "TWEENING"]);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DURING"]);
-    this.appendValueInput("DURATION")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SECONDS"]);
-    this.appendStatementInput("TARGETS")
-        .setCheck(animateBlocks);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ__WHEN FINISHED, EXECUTE THIS CODE"]);
-   this.appendStatementInput("ON_FINISHED")
-        .setCheck(null);
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_ANIMATE THE ACTOR BY UPDATING ITS PROPERTIES PROGRESSIVELY"]);
-
-  }
-};
-    
-Blockly.Blocks['animate_position'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_POSITION"])
-        .appendField(Blockly.Msg["PGZ_X"]);
-    this.appendValueInput("X")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_Y"]);
-    this.appendValueInput("Y")
-        .setCheck("Number");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, animateBlocks);
-    this.setNextStatement(true, animateBlocks);
-    this.setColour(0);
-    this.setTooltip(Blockly.Msg["PGZ_DEFINES A POSITION TARGET FOR ANIMATION"]);
-
-  }
-};
-
-Blockly.Blocks['screen_size'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SET THE SCREEN'S WIDTH"])
-        .appendField(new Blockly.FieldNumber(0, 0), "W")
-        .appendField(Blockly.Msg["PGZ_AND HEIGHT"])
-        .appendField(new Blockly.FieldNumber(0, 0), "H");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE SCREEN WIDTH AND HEIGHT"]);
-
-  }
-};
-
-
-Blockly.Blocks['screen_clear'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_CLEAR THE SCREEN"]);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_REMOVES EVERYTHING OFF THE SCREEN"]);
-
-  }
-};
-
-Blockly.Blocks['screen_fill'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FILL SCREEN WITH"])
-        .appendField(new Blockly.FieldColour("#000000"), "COLOR");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_FILL THE SCREEN WITH THE GIVEN COLOR"]);
-
-  }
-};
-
-Blockly.Blocks['screen_blit'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW IMAGE"]);
-    this.appendValueInput("IMAGE")
-        .setCheck("String");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_ON THE SCREEN AT POSITION"]);
-    this.appendValueInput("TOP")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(",");
-    this.appendValueInput("LEFT")
-        .setCheck("Number");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_DRAWS THE GIVEN IMAGE FILE ON THE SCREEN"]);
-
-  }
-};
-
-Blockly.Blocks['screen_create_rect'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_CREATE A RECTANGLE"]);
-    this.appendValueInput("X")
-        .setCheck("Number")
-        .appendField("X");
-    this.appendValueInput("Y")
-        .setCheck("Number")
-        .appendField("Y");
-    this.appendValueInput("WIDTH")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["PGZ_WIDTH"]);
-    this.appendValueInput("HEIGHT")
-        .setCheck("Number")
-        .appendField(Blockly.Msg["PGZ_HEIGHT"]);
-    this.setInputsInline(true);
-    this.setOutput(true, "Rect");
-    this.setColour(270);
- this.setTooltip(Blockly.Msg["PGZ_CREATE A RECTANGULAR SURFACE FOR USE IN PYGAME"]);
+    this.setColour(90);
+ this.setTooltip("Joue le son 'Feu'");
  this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['screen_draw_line'] = {
+Blockly.Blocks['sound_metal'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW A LINE FROM"]);
-    this.appendValueInput("STARTX")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(",");
-    this.appendValueInput("STARTY")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_TO"]);
-    this.appendValueInput("FINISHX")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(",");
-    this.appendValueInput("FINISHY")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_IN COLOR"])
-        .appendField(new Blockly.FieldColour("#FFFFFF"), "COLOR");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/sound_metal.png", 80, 80, "Play the 'metal' sound"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_DRAWS A LINE ON THE SCREEN"]);
-
+    this.setColour(90);
+ this.setTooltip("Joue le son 'Metal'");
+ this.setHelpUrl("");
   }
 };
-
-Blockly.Blocks['screen_draw_circle'] = {
+Blockly.Blocks['sound_water'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW A(N)"])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_EMPTY","CIRCLE"], [BLOCKLY.MSG."FILLED","FILLED_CIRCLE"]]), "EMPTYFILLED"])
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_CIRCLE AT"]);
-    this.appendValueInput("CENTERX")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(",");
-    this.appendValueInput("CENTERY")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_AND A RADIUS OF"]);
-    this.appendValueInput("RADIUS")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_IN COLOR"])
-        .appendField(new Blockly.FieldColour("#FFFF00"), "COLOR");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/sound_water.png", 80, 80, "Play the 'water' sound"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_DRAWS A CIRCLE ON THE SCREEN"]);
-
+    this.setColour(90);
+ this.setTooltip("Joue le son 'Eau'");
+ this.setHelpUrl("");
   }
 };
-
-Blockly.Blocks['screen_draw_rectangle'] = {
+Blockly.Blocks['sound_wood'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW A(N)"])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_EMPTY","RECT"], [BLOCKLY.MSG."FILLED","FILLED_RECT"]]), "EMPTYFILLED"])
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_RECTANGLE "]);
-    this.appendValueInput("RECT")
-        .setCheck("Rect");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_IN COLOR"])
-        .appendField(new Blockly.FieldColour("#FF0000"), "COLOR");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/sound_wood.png", 80, 80, "Play the 'wood' sound"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_DRAWS A RECTANGLE ON THE SCREEN"]);
-
+    this.setColour(90);
+ this.setTooltip("Joue le son 'Bois'");
+ this.setHelpUrl("");
   }
 };
-
-// Global variable that lists all Text Format blocks that are allowed 
-var pgzTextFormatBlocks = ["format_font_name"
-                          ,"format_font_size"
-                          ,"format_font_color"
-                          ,"format_font_bgcolor"
-                          ,"format_text_position"
-                          ,"format_text_rotation"
-                          ,"format_text_align"
-                          ,"format_text_shadow"
-                 //         ,"__"
-                          ];
-
-Blockly.Blocks['screen_draw_text'] = {
+Blockly.Blocks['sound_soil'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_DRAW TEXT"]);
-    this.appendValueInput("TEXT")
-        .setCheck("String");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FORMATTED AS"]);
-    this.appendStatementInput("FORMAT")
-        .setCheck(pgzTextFormatBlocks);
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/sound_soil.png", 80, 80, "Play the 'soil' sound"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip(Blockly.Msg["PGZ_DRAWS THE GIVEN TEXT ON THE SCREEN USING FORMATTING"]);
-
+    this.setColour(90);
+ this.setTooltip("Joue le son 'Terre'");
+ this.setHelpUrl("");
   }
 };
 
-
-Blockly.Blocks['format_font_name'] = {
+Blockly.Blocks['motor_forward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FONT NAME"]);
-    this.appendValueInput("VALUE")
-        .setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE FONT NAME OF THE TEXT"]);
-
-  }
-};
-Blockly.Blocks['format_font_size'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FONT SIZE"]);
-    this.appendValueInput("VALUE")
-        .setCheck("Number");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE FONT SIZE OF THE TEXT"]);
-
-  }
-};
-Blockly.Blocks['format_font_color'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FONT COLOR"])
-        .appendField(new Blockly.FieldColour("#FFFFFF"), "VALUE");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE FONT COLOR OF THE TEXT"]);
-
-  }
-};
-Blockly.Blocks['format_font_bgcolor'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_FONT BACKGROUND COLOR"])
-        .appendField(new Blockly.FieldColour("#FFFFFF"), "VALUE");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE FONT BACKGROUND COLOR OF THE TEXT"]);
-
-  }
-};
-
-Blockly.Blocks['format_text_position'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_TEXT POSITION ANCHORED BY ITS"])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_TOP LEFT","TOPLEFT"], [BLOCKLY.MSG."CENTER","CENTER"],  [BLOCKLY.MSG."MIDDLE TOP","MIDTOP"], [BLOCKLY.MSG."TOP RIGHT","TOPRIGHT"], [BLOCKLY.MSG."MIDDLE LEFT","MIDLEFT"], [BLOCKLY.MSG."MIDDLE RIGHT","MIDRIGHT"], [BLOCKLY.MSG."BOTTOM LEFT","BOTTOMLEFT"], [BLOCKLY.MSG."MIDDLE BOTTOM","MIDBOTTOM"], [BLOCKLY.MSG."BOTTOM RIGHT","BOTTOMRIGHT"]]), "ANCHOR"])
-        .appendField(Blockly.Msg["PGZ_AT X"]);
-    this.appendValueInput("X")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_Y"]);
-    this.appendValueInput("Y")
-        .setCheck("Number");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE FONT COLOR OF THE TEXT"]);
-
-  }
-};
-
-Blockly.Blocks['format_text_rotation'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_TEXT ROTATION ANGLE"])
-        .appendField(new Blockly.FieldAngle(0), "VALUE");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE ROTATION ANGLE OF THE TEXT"]);
-
-  }
-};
-
-Blockly.Blocks['format_text_align'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_TEXT ALIGNED TO THE "])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_LEFT","LEFT"], [BLOCKLY.MSG."CENTER","CENTER"], [BLOCKLY.MSG."RIGHT","RIGHT"]]), "VALUE"])
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS THE ALIGNMENT OF THE TEXT"]);
-
-  }
-};
-Blockly.Blocks['format_text_shadow'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_TEXT SHADOW OFFSET BY "])
-        .appendField(Blockly.Msg["PGZ_X"]);
-    this.appendValueInput("X")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_Y"]);
-    this.appendValueInput("Y")
-        .setCheck("Number");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, pgzTextFormatBlocks);
-    this.setNextStatement(true, pgzTextFormatBlocks);
-    this.setColour(250);
-    this.setTooltip(Blockly.Msg["PGZ_SETS A SHADOW UNDER THE TEXT WITH THE GIVEN OFFSET"]);
-
-  }
-};
-
-
-Blockly.Blocks['clock_schedule'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SCHEDULE"])
-        .appendField(new Blockly.FieldDropdown([ [Blockly.Msg["PGZ_ONCE","SCHEDULE_UNIQUE"], [BLOCKLY.MSG."FOREVER","SCHEDULE"] ]), "REPEAT"]);
-   this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_IN"]);
-    this.appendValueInput("DELAY")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SECOND(S)"]);
-   this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ__OPTIONAL CALLBACK NAME"]);
-    this.appendValueInput("CALLBACK_NAME")
-        .setCheck("String");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/motor_forward.png", 64, 64, "Move forward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_EXECUTE THE GIVEN CODE AFTER THE GIVEN DELAY (ONCE OR UNTIL CANCELLED)"]);
-
+    this.setColour(0);
+ this.setTooltip("Avance le robot");
+ this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['clock_schedule_interval'] = {
+Blockly.Blocks['motor_backward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SCHEDULE"])
-   this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_EVERY"]);
-    this.appendValueInput("INTERVAL")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_SECOND(S)"]);
-   this.appendStatementInput("STATEMENTS")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ__OPTIONAL CALLBACK NAME"]);
-    this.appendValueInput("CALLBACK_NAME")
-        .setCheck("String");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/motor_backward.png", 64, 64, "Move backward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_EXECUTE THE GIVEN CODE AT THE GIVEN INTERVAL"]);
-
+    this.setColour(0);
+ this.setTooltip("Recule le robot");
+ this.setHelpUrl("");
   }
 };
-
-Blockly.Blocks['clock_unschedule'] = {
+ 
+Blockly.Blocks['motor_full_turn'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["PGZ_CANCEL SCHEDULED CALLBACK"])
-    this.appendValueInput("CALLBACK_NAME")
-        .setCheck("String");
-    this.setInputsInline(true);
+        .appendField(new Blockly.FieldImage("assets/images/motor_full_turn.png", 64, 64, "Perform a full turn"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(120);
-    this.setTooltip(Blockly.Msg["PGZ_CANCEL THE GIVEN CALLBACK"]);
-
+    this.setColour(0);
+ this.setTooltip("Fait pivoter le robot sur lui-même");
+ this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['light_on'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/light_on.png", 64, 64, "Turn on the spotlight"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);
+ this.setTooltip("Allume le spot camera");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['light_off'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/light_on.png", 64, 64, "Turn off the spotlight"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);
+ this.setTooltip("Eteint le spot caméra");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['light_thunder'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/light_thunder.png", 64, 64, "Start a thunder light effect"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);
+ this.setTooltip("Simule un orage avec le spot caméra");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['light_wave'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/light_wave.png", 64, 64, "Start a breathing light effect"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);
+ this.setTooltip("Simule une respiration avec le spot caméra");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['camera_pan_left'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/camera_pan_left.png", 64, 64, "Camera Pan Left"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+ this.setTooltip("Pivote la camera sur la gauche");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['camera_pan_right'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/camera_pan_right.png", 64, 64, "Camera Pan Right"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+ this.setTooltip("Pivote la camera sur la droite");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['camera_tilt_up'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/camera_tilt_up.png", 64, 64, "Camera Tilt Up"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+ this.setTooltip("Pivote la camera vers le haut");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['camera_tilt_down'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("assets/images/camera_tilt_down.png", 64, 64, "Camera Tilt Down"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+ this.setTooltip("Pivote la camera vers le bas");
+ this.setHelpUrl("");
+  }
+};
+
+
+
