@@ -63,7 +63,7 @@ Blockly.Blocks['sound_soil'] = {
 Blockly.Blocks['motor_forward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_forward.png", 64, 64, "Move forward"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_forward.png", 80,80, "Move forward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
@@ -75,7 +75,7 @@ Blockly.Blocks['motor_forward'] = {
 Blockly.Blocks['motor_backward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_backward.png", 64, 64, "Move backward"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_backward.png", 80,80, "Move backward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
@@ -87,7 +87,7 @@ Blockly.Blocks['motor_backward'] = {
 Blockly.Blocks['motor_full_turn'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_full_turn.png", 64, 64, "Perform a full turn"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_full_turn.png", 80,80, "Perform a full turn"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
@@ -99,7 +99,7 @@ Blockly.Blocks['motor_full_turn'] = {
 Blockly.Blocks['light_on'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/light_on.png", 64, 64, "Turn on the spotlight"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/light_on.png", 80,80, "Turn on the spotlight"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
@@ -111,7 +111,7 @@ Blockly.Blocks['light_on'] = {
 Blockly.Blocks['light_off'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/light_off.png", 64, 64, "Turn off the spotlight"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/light_off.png", 80,80, "Turn off the spotlight"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
@@ -123,7 +123,7 @@ Blockly.Blocks['light_off'] = {
 Blockly.Blocks['light_thunder'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/light_thunder.png", 64, 64, "Start a thunder light effect"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/light_thunder.png", 80,80, "Start a thunder light effect"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
@@ -134,7 +134,7 @@ Blockly.Blocks['light_thunder'] = {
 Blockly.Blocks['light_wave'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/light_wave.png", 64, 64, "Start a breathing light effect"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/light_wave.png", 80,80, "Start a breathing light effect"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
@@ -146,7 +146,7 @@ Blockly.Blocks['light_wave'] = {
 Blockly.Blocks['camera_pan_left'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_pan_left.png", 64, 64, "Camera Pan Left"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_pan_left.png", 80,80, "Camera Pan Left"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
@@ -157,7 +157,7 @@ Blockly.Blocks['camera_pan_left'] = {
 Blockly.Blocks['camera_pan_right'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_pan_right.png", 64, 64, "Camera Pan Right"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_pan_right.png", 80,80, "Camera Pan Right"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
@@ -169,7 +169,7 @@ Blockly.Blocks['camera_pan_right'] = {
 Blockly.Blocks['camera_tilt_up'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_tilt_up.png", 64, 64, "Camera Tilt Up"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_tilt_up.png", 80,80, "Camera Tilt Up"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
@@ -181,7 +181,7 @@ Blockly.Blocks['camera_tilt_up'] = {
 Blockly.Blocks['camera_tilt_down'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_tilt_down.png", 64, 64, "Camera Tilt Down"));
+        .appendField(new Blockly.FieldImage("blockly/assets/images/camera_tilt_down.png", 80,80, "Camera Tilt Down"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
