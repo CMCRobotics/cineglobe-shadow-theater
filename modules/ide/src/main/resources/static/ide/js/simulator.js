@@ -2,16 +2,16 @@
     var renderer;
     var gianoPiSpeed = 5;
     var url = 'scene.json';
-    var SCREEN_WIDTH = window.innerWidth;
-    var SCREEN_HEIGHT = window.innerHeight;
-    var container = document.getElementById( 'simulation-div' );
+	var container = document.getElementById( 'simulation-div' );
+    var SCREEN_W = 480;
+	var SCREEN_H = 750;
     var gpi,gpiSpotlight,gpiCamera;
     var gpiCurrentPos = new THREE.Vector3();
     
     function initialize_simulator(){
 	    renderer = new THREE.WebGLRenderer( { antialias: true } );
 	    renderer.setPixelRatio( window.devicePixelRatio );
-	    renderer.setSize( ($(container).width()-10), SCREEN_HEIGHT/2 );
+	    renderer.setSize( SCREEN_W, SCREEN_H );
 	    renderer.shadowMap.enabled = true;
 	    renderer.shadowMapSoft = false;
 	    container.appendChild( renderer.domElement );
@@ -22,9 +22,9 @@
 	      scene.background = new THREE.Color( 0xffffff );
 	      // create a new downwards looking camera and use it in the loaded scene
 	      if ( topCamera === undefined ) {
-	        topCamera = new THREE.PerspectiveCamera( 30, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 2000 );
+	        topCamera = new THREE.PerspectiveCamera( 30, (SCREEN_W / (SCREEN_H/2) ), 1, 2000 );
 	        topCamera.position.set( 0, 50, 0 );
-	        topCamera.setLens(34);
+	        topCamera.setFocalLength(34);
 	        topCamera.lookAt(new THREE.Vector3(0,0,0));
 	        camera = topCamera;
 	      }
@@ -33,6 +33,7 @@
 	      
 	      //
 	      gpiCamera = scene.getObjectByName("GianoPi Camera");
+	      gpiCamera.setFocalLength(20);
 	      gpiSpotlight.target = gpiCamera;
 	      //gianoPiSpotlight.intensity = 0;
 	      controls = new THREE.OrbitControls( camera,container );
@@ -53,17 +54,44 @@
     }
     
     window.onresize = function () {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize( ($(container).width()-10), window.innerHeight/2 );
+	  topCamera.aspect = (SCREEN_W / (SCREEN_H/2) );
+      gpiCamera.aspect = (SCREEN_W / (SCREEN_H/2) );
+      topCamera.updateProjectionMatrix();
+      gpiCamera.updateProjectionMatrix();
+      renderer.setSize(SCREEN_W, SCREEN_H );
     };
     
     function animate() {
-      requestAnimationFrame( animate );
+      
+	  requestAnimationFrame( animate );
       TWEEN.update();
       controls.update();
-      renderer.render( scene, camera );
       
+      render();
+    }
+    
+    function render() {
+	    var left,bottom,width,height;
+
+	    left = 1; bottom = 1; width = SCREEN_W-2; height = 0.5 * SCREEN_H-2;
+	    renderer.setViewport (left,bottom,width,height);
+	    renderer.setScissor(left,bottom,width,height);
+	    renderer.setScissorTest (true);
+	    topCamera.aspect = width/height;
+	    topCamera.updateProjectionMatrix();
+	    renderer.render (scene,topCamera);
+        
+	    left = 1; bottom = 0.5*SCREEN_H+1; width = SCREEN_W-2; height = 0.5 * SCREEN_H-2;
+		renderer.setViewport (left,bottom,width,height);
+		renderer.setScissor(left,bottom,width,height);
+		renderer.setScissorTest (true);  // clip out "viewport"
+		gpiCamera.aspect = width/height;
+		gpiCamera.updateProjectionMatrix();
+		renderer.render (scene,gpiCamera);  
+		  
+        
+	    
+	  
     }
     
 
