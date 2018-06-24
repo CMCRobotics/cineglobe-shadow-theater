@@ -51,12 +51,20 @@
               </div>
               <div class="col-sm-12 col-lg-5">
                  <ul class="nav nav-tabs" role="tablist" style="border-bottom:0px">
-                      <li class="active"><a id="navtab-script-preview"  href="#script-preview" role="tab" data-toggle="tab">Script preview</a></li>
+                      <li class="active"><a id="navtab-simulation" href="#simulation" role="tab" data-toggle="tab">Simulator</a></li>
+                      <li><a id="navtab-script-preview"  href="#script-preview" role="tab" data-toggle="tab">Script preview</a></li>
                       <li><a id="navtab-console" href="#console" role="tab" data-toggle="tab">Console</a></li>
                     </ul>
                     
                  <div class="tab-content">
-                  <div class="tab-pane active" id="script-preview">
+                  <div class="tab-pane active" id="simulation">
+                      <div id="simulation-panel" class="panel panel-default" style="border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                         <div class="panel-body" style="padding:0px">
+                           <div id="simulation-div" class=" col-sm-12"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane " id="script-preview">
                      <div id="chiby-script-preview-panel" class="panel panel-default" style="border-top-left-radius: 0px;border-top-right-radius: 0px;">
                         <div class="panel-body" style="padding:0px">
                             <textarea readonly id="chiby-script-preview-textarea" class="chiby-textarea col-sm-12"></textarea>
@@ -73,13 +81,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="tab-pane" id="simulation">
-                      <div id="simulation-panel" class="panel panel-default" style="border-top-left-radius: 0px;border-top-right-radius: 0px;">
-                         <div class="panel-body" style="padding:0px">
-                           <div id="simulation-div" class=" col-sm-12"></div>
-                          </div>
-                      </div>
-                  </div>
+                  
                 </div>
           </div>
         </div>
@@ -257,6 +259,12 @@
    <script src="/webjars/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
    <script src="/webjars/packery/dist/packery.pkgd.min.js"></script>
    <script src="/webjars/hybind/index.js"></script>
+    <script type="text/javascript" src="/webjars/three.js/three.min.js"></script>
+    <script type="text/javascript" src="/webjars/tween.js/src/Tween.js"></script>
+    
+    <script type="text/javascript" src="js/three.orbitcontrol.r88.js"></script>
+
+   <script src="js/simulator.js"></script>
    <script src="js/ide.service.js"></script>
    <script type="text/javascript">
           function blocklyLoaded(blockly) {
@@ -320,6 +328,8 @@
           $("#modal-new-application").on("shown.bs.modal",function(){
               $("#new-app-title").focus();
           });
+          
+          initialize_simulator();
       });
    
       

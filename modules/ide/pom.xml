@@ -132,7 +132,23 @@
             <artifactId>draggabilly</artifactId>
             <version>2.1.0</version>
         </dependency>
-
+        <dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>three.js</artifactId>
+		    <version>r88</version>
+		</dependency>
+        <dependency>
+		    <groupId>org.webjars.npm</groupId>
+		    <artifactId>brython</artifactId>
+		    <version>3.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>tween.js</artifactId>
+			<version>16.6.0</version>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>com.github.chibyhq.playar</groupId>
 			<artifactId>repositories</artifactId>
