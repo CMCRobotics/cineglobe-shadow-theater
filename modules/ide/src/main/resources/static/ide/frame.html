@@ -6,8 +6,8 @@
     <script src="/webjars/blockly/blocks_compressed.js"></script>
     <script src="/webjars/blockly/python_compressed.js"></script>
     <script src="/webjars/blockly/msg/js/en.js"></script>
-    <script src="/webjars/blockly-shadow-theater/shadow-theater.blocks.js"></script>
-    <script src="/webjars/blockly-shadow-theater/shadow-theater.generators.js"></script>
+    <script src="blockly/shadow-theater.blocks.js"></script>
+    <script src="blockly/shadow-theater.generators.js"></script>
     <style>
       html, body {
         background-color: #fff;
@@ -41,11 +41,28 @@
   </head>
   <body onload="init()">
 <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
-  <category name="Robot Control" colour="#5C81A6">  
+  <category name="Motors" colour="#5C81A6">  
+    <block type="motor_forward"></block>
+    <block type="motor_backward"></block>
+    <block type="motor_full_turn"></block>
+    <block type="camera_pan_left"></block>
+    <block type="camera_pan_right"></block>
+    <block type="camera_tilt_up"></block>
+    <block type="camera_tilt_down"></block>
+  </category>
+  <category name="Lights and sounds" colour="#5CA65C">
+    <block type="light_on"></block>
+    <block type="light_off"></block>
+    <block type="light_thunder"></block>
+    <block type="light_wave"></block>
+    <block type="sound_water"> </block>
+    <block type="sound_metal"> </block>
     <block type="sound_fire"> </block>
+    <block type="sound_wood"> </block>
+    <block type="sound_soil"> </block>
   </category>
   
-  <separator></separator>
+  <sep></sep>
   
   <category name="Loops" colour="#5CA65C">  
     <block type="controls_repeat_ext">

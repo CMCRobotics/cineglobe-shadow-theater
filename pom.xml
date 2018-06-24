@@ -122,7 +122,6 @@
     </build>
     
     <modules>
-	  <module>modules/blockly</module>
 	  <module>modules/ide</module>
 	</modules>
 </project>

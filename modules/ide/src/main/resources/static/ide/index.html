@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chiby IDE</title>
+    <title>Cineglobe IDE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png"/>
@@ -46,10 +46,10 @@
         </div>
       </nav>
         <div class="row">
-              <div class="col-sm-12 col-lg-8 main" style="padding-right:0px">
+              <div class="col-sm-12 col-lg-7 main" style="padding-right:0px">
                 <iframe id="blocklyFrame" style="width:100%; height:100%;" src="frame.html"></iframe>
               </div>
-              <div class="col-sm-12 col-lg-4">
+              <div class="col-sm-12 col-lg-5">
                  <ul class="nav nav-tabs" role="tablist" style="border-bottom:0px">
                       <li class="active"><a id="navtab-script-preview"  href="#script-preview" role="tab" data-toggle="tab">Script preview</a></li>
                       <li><a id="navtab-console" href="#console" role="tab" data-toggle="tab">Console</a></li>
@@ -73,7 +73,13 @@
                           </div>
                       </div>
                   </div>
-                  
+                  <div class="tab-pane" id="simulation">
+                      <div id="simulation-panel" class="panel panel-default" style="border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                         <div class="panel-body" style="padding:0px">
+                           <div id="simulation-div" class=" col-sm-12"></div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
           </div>
         </div>

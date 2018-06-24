@@ -20,9 +20,9 @@ function getGlobalVariablesStatement(block, addLineReturn) {
 
 var sounds = ["water","fire","soil","wood","metal"];
 for(var i=0, len=sounds.length; i < len; i++){
-   Blockly.Python[('sound_'+sounds[i])] = eval("function(block) {"
+   Blockly.Python[('sound_'+sounds[i])] = eval("(function(block) {"
     +"var code = \'drivar.sound_playAsync(\"sound_"+sounds[i]+"\")\\n\';"
-    + "return code;}");
+    + "return code;})");
 };
 
 Blockly.Python['motor_forward'] = function(block) {
