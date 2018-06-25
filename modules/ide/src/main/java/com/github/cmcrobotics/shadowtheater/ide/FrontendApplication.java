@@ -2,11 +2,16 @@ package com.github.cmcrobotics.shadowtheater.ide;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.map.repository.config.EnableMapRepositories;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+//import org.springframework.data.map.repository.config.EnableMapRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @SpringBootApplication
-@EnableMapRepositories("com.github.chibyhq.store.model.repositories")
+@EnableJpaRepositories("com.github.chibyhq.store.model.repositories")
+@ComponentScan(basePackages = { "com.github.chibyhq.*" })
+@EntityScan("com.github.chibyhq.playar.model")
 @EnableSpringDataWebSupport
 public class FrontendApplication {
 	
