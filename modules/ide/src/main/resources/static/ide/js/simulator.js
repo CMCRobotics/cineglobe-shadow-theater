@@ -1,11 +1,11 @@
     var scene, camera,topCamera, controls, stats;
     var renderer;
-    var gianoPiSpeed = 5;
+    var gianoPiSpeed = 2;
     var url = 'scene.json';
 	var container = document.getElementById( 'simulation-div' );
     var SCREEN_W = 480;
 	var SCREEN_H = 750;
-    var gpi,gpiSpotlight,gpiCamera;
+    var gpi,gpiSpotlight,gpiCamera, gpiDirection;
     var gpiCurrentPos = new THREE.Vector3();
     
     function initialize_simulator(){
@@ -29,6 +29,7 @@
 	        camera = topCamera;
 	      }
 	      gpi = scene.getObjectByName("GianoPi");
+	      gpiDirection = gpi.getWorldDirection();
 	      gpiSpotlight = scene.getObjectByName("GianoPi SpotLight");
 	      
 	      //
@@ -94,9 +95,39 @@
 	  
     }
     
+    function moveRobotTo(destination, callback){
+        var thisCallback = callback;
+    	tweenGianoPiToLookAt(destination, function(){
+    		tweenGianoPiToDestination(destination, thisCallback);
+    	});
+    }
 
-    function tweenGianoPiTo(destination){
+    function tweenGianoPiToLookAt(destination, callback){
+    	var startRotation = new THREE.Euler().copy( gpi.rotation );
+
+    	// final rotation (with lookAt)
+    	gpi.lookAt( destination.position );
+    	var endRotation = new THREE.Euler().copy( gpi.rotation );
+
+    	// revert to original rotation
+    	gpi.rotation.copy( startRotation );
+    	var duration = 500;
+
+    	// Tween
+    	new TWEEN.Tween( gpi.rotation )
+    	         .to( {y: endRotation.y}, duration )
+    	         .easing(TWEEN.Easing.Quadratic.InOut)
+    	         .onComplete(function() {
+    	        	 console.log("rotation complete");
+    	        	 if(callback) callback();
+    	        	})
+    	         .start();
+    	return duration;
+      }
+    
+    function tweenGianoPiToDestination(destination, callback){
       gpiCurrentPos.copy(gpi.position);
+      
       var distance = gpiCurrentPos.distanceTo(destination.position);
       var duration = (distance / gianoPiSpeed) * 1000;
       
@@ -104,7 +135,9 @@
         .to(destination.position, duration)
         .easing(TWEEN.Easing.Quadratic.InOut)
         .onComplete(function() {
-          console.log("movement complete")
+          console.log("movement complete");
+          if(callback) callback();
         })
         .start();
+      return duration;
     }
