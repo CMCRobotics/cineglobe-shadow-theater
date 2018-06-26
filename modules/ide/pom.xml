@@ -64,11 +64,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Use MySQL Connector-J -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+		    <groupId>org.hsqldb</groupId>
+		    <artifactId>hsqldb</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
         
 
 		<dependency>
@@ -197,11 +197,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!--dependency>
-		  <groupId>${project.groupId}</groupId>
-		  <artifactId>blockly-shadow-theater</artifactId>
-		  <version>${project.version}</version>
-		</dependency-->
 	</dependencies>
 
 	<build>
