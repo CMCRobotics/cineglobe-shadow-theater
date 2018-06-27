@@ -33,8 +33,8 @@ public class RunSessionHandler {
 
 
 	/**
-	 * When a new run session is created, we immediately connect it to a Docker
-	 * run. We will post docker logs outputs as log entries connected this this
+	 * When a new run session is created, we immediately connect it to a run session. 
+	 * We will post logs outputs as log entries connected this this
 	 * run session asynchronously.
 	 * 
 	 * @param runSession

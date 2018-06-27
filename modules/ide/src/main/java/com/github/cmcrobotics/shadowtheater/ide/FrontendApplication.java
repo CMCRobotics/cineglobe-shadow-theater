@@ -10,7 +10,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.github.chibyhq.store.model.repositories")
-@ComponentScan(basePackages = { "com.github.chibyhq.*" })
+@ComponentScan(basePackages = { "com.github.chibyhq.*", "com.github.cmcrobotics.shadowtheater.*" })
 @EntityScan("com.github.chibyhq.playar.model")
 @EnableSpringDataWebSupport
 public class FrontendApplication {
