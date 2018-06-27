@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cineglobe IDE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap-select/dist/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="css/daemon.css"/>
+  </head>
+  <body style="background: #000000;">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><img src="images/brand.png" height="48" width="174"></a>
+                </div>
+          <ul class="nav navbar-nav">
+            <li class="nav-item"><a href="#" class="nav-link" onclick="chiby.showHome()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+            <!-- li class="nav-item"><a href="#" data-toggle="modal" data-target="#modal-new-application" class="nav-link"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;New application</a></li -->
+            <!--li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;&nbsp;Open application</a></li-->
+          </ul>
+        </div>
+      </nav>
+      
+     <div id="panel-home" class="panel panel-default collapse in">
+         <div class="panel-body"> 
+              <div id="applications-grid" class="grid">
+              </div>
+          </div>
+      </div>
+      
+      
+      
+   <script src="/webjars/jquery/jquery.js"></script>
+   <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+   <script src="/webjars/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+   <script src="/webjars/packery/dist/packery.pkgd.min.js"></script>
+   <script src="/webjars/hybind/index.js"></script>
+   <script src="js/daemon.service.js"></script>
+
+    <script type="text/javascript">
+         
+          function getWindowDimensions() { 
+                  var myWidth = 0, myHeight = 0;
+                  if( typeof( window.innerWidth ) == 'number' ) {
+                      myWidth = window.innerWidth;
+                      myHeight = window.innerHeight;
+                  }
+                  if (myWidth < 1) myWidth = screen.width; // emergency fallback to prevent division by zero
+                  if (myHeight < 1) myHeight = screen.height; 
+                  return [myWidth,myHeight];
+              }
+              
+     $(document).ready(function(){
+          var dim = getWindowDimensions();
+          // Leave space for the top navigation bar
+//          $("#chiby-script-action-button").on("click", chiby.runApplication);
+          
+          var $grid = $('.grid').packery({
+              itemSelector: '.grid-item',
+              gutter: 10
+            });
+          
+          chiby.refreshHome();
+          
+          $("#panel-home").on('shown.bs.collapse', function(){
+                $("#applications-grid").packery();
+            });
+          $("#modal-new-application").on("shown.bs.modal",function(){
+              $("#new-app-title").focus();
+          });
+          
+      });
+   
+      
+    </script>  
+      
+  </body>
