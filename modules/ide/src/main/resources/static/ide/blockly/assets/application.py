@@ -1,0 +1,6 @@
+print('OUTPUT',flush=True)
+print('OUTPUT',flush=True)
+print('OUTPUT',flush=True)
+print('OUTPUT',flush=True)
+print('OUTPUT',flush=True)
+quit()

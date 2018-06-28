@@ -1,10 +1,11 @@
 package com.github.cmcrobotics.shadowtheater.ide;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.UUID;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.github.chibyhq.playar.model.Application;
 import com.github.chibyhq.playar.model.LogEntry;
 import com.github.chibyhq.playar.model.RunSession;
 import com.github.chibyhq.store.model.repositories.ApplicationRepository;
-import com.github.chibyhq.store.model.repositories.LogEntryRepository;
 import com.github.chibyhq.store.model.repositories.RunSessionRepository;
 
 

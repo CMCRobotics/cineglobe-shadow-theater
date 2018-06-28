@@ -7,7 +7,8 @@ import uk.co.blackpepper.bowman.annotation.ResourceId;
 
 @RemoteResource("/runSessions")
 
-public class RunSessionEntity extends com.github.chibyhq.playar.model.RunSession {
+public class RunSessionEntity extends com.github.chibyhq.playar.model.RunSession implements HateOASEntity {
     private URI id;
+    @Override
     @ResourceId public URI getId() { return id; }
 }

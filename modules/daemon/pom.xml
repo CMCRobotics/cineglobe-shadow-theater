@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.github.cmcrobotics.shadowtheater</groupId>
-        <artifactId>shadowtheater</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../..</relativePath>
+	<parent>
+		<groupId>com.github.cmcrobotics.shadowtheater</groupId>
+		<artifactId>shadowtheater</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
 	</parent>
-	
+
 	<artifactId>cineglobe-daemon</artifactId>
 	<packaging>jar</packaging>
 
@@ -22,46 +22,41 @@
 	</properties>
 
 	<profiles>
-	  <profile>
-	    <id>rpi3</id>
-	    <properties>
-		   <base.image>resin/raspberrypi3-alpine-openjdk:8-jdk</base.image>
-		   <image.name>cineglobe-shadow-theater/rpi3-daemon</image.name>
-		 </properties>
-      </profile>
-	  <profile>
-	    <id>gitlab-x64</id>
-	    <properties>
-		   <image.name>gitlab-registry.cern.ch/cineglobe-shadow-theater/images/daemon</image.name>
-		 </properties>
-      </profile>
+		<profile>
+			<id>rpi3</id>
+			<properties>
+				<base.image>resin/raspberrypi3-alpine-openjdk:8-jdk</base.image>
+				<image.name>cineglobe-shadow-theater/rpi3-daemon</image.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>gitlab-x64</id>
+			<properties>
+				<image.name>gitlab-registry.cern.ch/cineglobe-shadow-theater/images/daemon</image.name>
+			</properties>
+		</profile>
 	</profiles>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
-        <dependency>
-		    <groupId>org.hsqldb</groupId>
-		    <artifactId>hsqldb</artifactId>
-		    <scope>runtime</scope>
-		</dependency>
-        <dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-		</dependency>
+		<!-- dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-jpa</artifactId> 
+			</dependency> <dependency> <groupId>org.hsqldb</groupId> <artifactId>hsqldb</artifactId> 
+			<scope>runtime</scope> </dependency> <dependency> <groupId>com.querydsl</groupId> 
+			<artifactId>querydsl-jpa</artifactId> </dependency -->
 
 		<dependency>
-            <groupId>uk.co.blackpepper.bowman</groupId>
-            <artifactId>bowman-client</artifactId>
-            <version>0.5.1</version>
-        </dependency>
+			<groupId>uk.co.blackpepper.bowman</groupId>
+			<artifactId>bowman-client</artifactId>
+			<version>0.5.1</version>
+		</dependency>
 
 
 		<dependency>
@@ -80,48 +75,69 @@
 			<artifactId>jquery</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>qunit</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-		    <groupId>org.webjars.npm</groupId>
-		    <artifactId>hybind</artifactId>
-		    <version>1.4.3</version>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>qunit</artifactId>
+			<version>2.1.0</version>
 		</dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>bootstrap-select</artifactId>
-            <version>1.12.4</version>
-            <exclusions>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>hybind</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>bootstrap-select</artifactId>
+			<version>1.12.4</version>
+			<exclusions>
 				<exclusion>
 					<groupId>org.webjars.bower</groupId>
 					<artifactId>jquery</artifactId>
 				</exclusion>
 			</exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>packery</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>draggabilly</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-		
-		<dependency>
-			<groupId>com.github.chibyhq.playar</groupId>
-			<artifactId>repositories</artifactId>
-			<version>[0.1-SNAPSHOT,)</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.chibyhq.playar</groupId>
-			<artifactId>client</artifactId>
-			<version>[0.1-SNAPSHOT,)</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>packery</artifactId>
+			<version>2.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>draggabilly</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+		<!-- dependency> <groupId>com.github.chibyhq.playar</groupId> <artifactId>repositories</artifactId> 
+			<version>[0.1-SNAPSHOT,)</version> </dependency> <dependency> <groupId>com.github.chibyhq.playar</groupId> 
+			<artifactId>client</artifactId> <version>[0.1-SNAPSHOT,)</version> </dependency -->
+		<dependency>
+			<groupId>com.github.chibyhq.playar</groupId>
+			<artifactId>model</artifactId>
+			<version>[0.1-SNAPSHOT,)</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.1-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.querydsl</groupId>
+					<artifactId>querydsl-collections</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -146,7 +162,7 @@
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -155,14 +171,14 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
-                    <execution>
-                       <goals>
-                          <goal>repackage</goal>
-                          <goal>build-info</goal>
-                       </goals>
-                    </execution>
-                </executions>
-                <dependencies>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
 					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>springloaded</artifactId>
@@ -170,36 +186,22 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-				    <mainClass>com.github.cmcrobotics.shadowtheater.daemon.Application</mainClass>
-				    <layout>ZIP</layout>
+					<mainClass>com.github.cmcrobotics.shadowtheater.daemon.Application</mainClass>
+					<layout>ZIP</layout>
 					<addResources>true</addResources>
 					<executable>true</executable>
-					<embeddedLaunchScriptProperties>    </embeddedLaunchScriptProperties>
+					<embeddedLaunchScriptProperties>
+					</embeddedLaunchScriptProperties>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.13</version>
-				<!--executions>
-					<execution>
-						<id>build-image</id>
-						<phase>package</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>push-image</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>push</goal>
-						</goals>
-						<configuration>
-							<imageName>${image.name}</imageName>
-						</configuration>
-					</execution>
-				</executions-->
+				<!--executions> <execution> <id>build-image</id> <phase>package</phase> 
+					<goals> <goal>build</goal> </goals> </execution> <execution> <id>push-image</id> 
+					<phase>deploy</phase> <goals> <goal>push</goal> </goals> <configuration> 
+					<imageName>${image.name}</imageName> </configuration> </execution> </executions -->
 				<configuration>
 					<imageName>${image.name}</imageName>
 					<baseImage>${base.image}</baseImage>
@@ -217,12 +219,12 @@
 						<MIRROR>http://distrib-coffee.ipsl.jussieu.fr/pub/linux/alpine/alpine/</MIRROR>
 					</env>
 					<runs>
-						<!--run>apk - -update add docker iptables ca-certificates bash</run-->
+						<!--run>apk - -update add docker iptables ca-certificates bash</run -->
 						<run>mkdir -p $INSTALLATION_HOME</run>
 						<run>mkdir -p $APP_HOME</run>
 						<run>chmod -R 777 $APP_HOME</run>
 						<run>mkdir -p $APP_LOGS</run>
-						<!--run>rm -rf /var/cache/apk/*</run-->
+						<!--run>rm -rf /var/cache/apk/*</run -->
 					</runs>
 					<workdir>$INSTALLATION_HOME</workdir>
 					<cmd>["java","-jar","${project.build.finalName}.${project.packaging}"]</cmd>
@@ -246,5 +248,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

@@ -264,7 +264,8 @@
     
     <script type="text/javascript" src="js/three.orbitcontrol.r88.js"></script>
 
-   <script src="js/simulator.js"></script>
+   <!-- script src="js/drivar.simulator.js"></script-->
+   <script src="drivar/drivar.js"></script>
    <script src="js/ide.service.js"></script>
    <script type="text/javascript">
           function blocklyLoaded(blockly) {
@@ -329,10 +330,20 @@
               $("#new-app-title").focus();
           });
           
-          initialize_simulator();
+          drivar.initialize("scene.json", document.getElementById( 'simulation-div' ));
+          //initialize_simulator("scene.json", document.getElementById( 'simulation-div' ));
       });
    
       
     </script>  
+    <script type="text/javascript" src="/webjars/brython/brython.js"></script>
+    <script type="text/javascript" src="/webjars/brython/brython_stdlib.js"></script>
       
+    <script type="text/javascript">
+      brython(1);
+    </script>
+    
+    <script type="text/python">
+      print("Starting the shebang")
+    </script>
   </body>

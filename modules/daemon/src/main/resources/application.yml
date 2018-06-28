@@ -1,2 +1,21 @@
-server.servlet.context-path=/run
-server.port=8081
+server:
+  servlet.context-path: /run
+  port: 8081
+cineglobe.daemon:
+  home: /home/bcopy/cineglobe
+  
+management.security.enabled: false
+management.endpoints.web:
+  exposure.include: jolokia
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "GET,POST"
+    
+    
+logging.level:
+  org.springframework: WARN
+  org.springframework.data: DEBUG
+  org.springframework.web: INFO
+  com.github.cmcrobotics: DEBUG
+  com.github.chibyhq: DEBUG
+    

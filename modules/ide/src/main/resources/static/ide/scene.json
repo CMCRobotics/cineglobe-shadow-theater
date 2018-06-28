@@ -516,12 +516,14 @@
 		"uuid": "3741222A-BD8F-401C-A5D2-5A907E891896",
 		"type": "Scene",
 		"name": "Theater",
+		"layers": 1,
 		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 		"children": [
 			{
 				"uuid": "7260B4B6-CC84-40AC-A192-7C288AC771C6",
 				"type": "Group",
 				"name": "Figurines",
+				"layers": 1,
 				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 				"children": [
 					{
@@ -530,6 +532,7 @@
 						"name": "Figurine 4",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.373648,0,0,0,0,0.912396,0,0,0,0,0.726963,0,-9.363056,0.951302,13.179582,1],
 						"geometry": "17B70F09-8D7D-4032-AA5A-CEE22948D4E0",
 						"material": "070EFE2A-FC3E-47B6-B7E4-FF0A914BE691"
@@ -540,6 +543,7 @@
 						"name": "Pedestal 4",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.839223,0.000199,-0.543787,0,0.000641,0.999999,0.001355,0,0.543787,-0.001486,0.839222,0,-9.314077,0.499829,12.965304,1],
 						"geometry": "1364326F-5C4B-4B1E-A006-62A0CB6B649A",
 						"material": "282DF355-7D32-4FFD-A30F-07D86838F1AE"
@@ -550,6 +554,7 @@
 						"name": "Figurine 3",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.59878,-0.051229,0.272833,0,0,0.904199,0.169779,0,-0.277601,-0.110501,0.588496,0,-13.065891,2.144937,-10.042723,1],
 						"geometry": "EEA645B7-0F68-404D-B42C-5CF966991EE1",
 						"material": "55C0E3B7-C8F4-40F5-BD82-4B22768176AE"
@@ -560,6 +565,7 @@
 						"name": "Pedestal 3",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.928262,0,0.371928,0,0,1,0,0,-0.371928,0,0.928262,0,-13.203427,0.5,-9.698361,1],
 						"geometry": "1364326F-5C4B-4B1E-A006-62A0CB6B649A",
 						"material": "282DF355-7D32-4FFD-A30F-07D86838F1AE"
@@ -570,6 +576,7 @@
 						"name": "Pedestal 2",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,3.01938,0.5,-11.949906,1],
 						"geometry": "1364326F-5C4B-4B1E-A006-62A0CB6B649A",
 						"material": "282DF355-7D32-4FFD-A30F-07D86838F1AE"
@@ -580,6 +587,7 @@
 						"name": "Figurine 2",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.71,0,0,0,0,1.677431,0,0,0,0,0.447433,0,2.976381,2.587414,-11.776329,1],
 						"geometry": "21981C0A-B065-47EE-93BB-B95EDE7FD547",
 						"material": "23635481-FB09-41A4-BFFD-6E20A0F1E56C"
@@ -590,6 +598,7 @@
 						"name": "Pedestal 1",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,12.300727,0.474701,0,1],
 						"geometry": "1364326F-5C4B-4B1E-A006-62A0CB6B649A",
 						"material": "282DF355-7D32-4FFD-A30F-07D86838F1AE"
@@ -600,6 +609,7 @@
 						"name": "Figurine 1",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [1.136865,-0.359479,0.135327,0,0.665203,1.916307,-0.497866,0,-0.038472,0.314086,1.157528,0,12.277543,0.99347,0,1],
 						"geometry": "DDC3A4CF-71F5-49CB-8C42-B7919C445B17",
 						"material": "E2A5469D-2B97-4BAE-974E-0E1F1AF7601D"
@@ -609,12 +619,14 @@
 				"uuid": "E51E761F-A17A-4853-BBD7-7F2F039F835B",
 				"type": "Group",
 				"name": "Circuit",
+				"layers": 1,
 				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 				"children": [
 					{
 						"uuid": "0CAA84C4-4E62-44EE-8602-7B223B419052",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,7.237114,0,13.660464,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -623,6 +635,7 @@
 						"uuid": "36D0BB66-1DA1-4DBA-B4BD-923DC339619D",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,9.855426,0,13.65,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -631,6 +644,7 @@
 						"uuid": "B181FB67-BFBC-41AF-A9D3-381BC186F4CA",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,11.124254,0,9.790036,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -639,6 +653,7 @@
 						"uuid": "597BA408-BDCD-40DE-A093-C0873CC1AC00",
 						"type": "Mesh",
 						"name": "Station",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,9.622418,-0.00703,-0.14897,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "DEBE6CAE-B9C6-4B23-90EB-AC924665BFD4"
@@ -647,6 +662,7 @@
 						"uuid": "A3D508CA-F583-41A4-AC3C-1B542D9B284B",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,7.653549,0,-5.463301,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -655,6 +671,7 @@
 						"uuid": "D8C318E0-0CD6-4B8C-B116-2AD8798E2507",
 						"type": "Mesh",
 						"name": "Station",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,2.795824,0,-9.721594,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "DEBE6CAE-B9C6-4B23-90EB-AC924665BFD4"
@@ -663,6 +680,7 @@
 						"uuid": "84F655AD-BBCD-470D-A480-C42FB0D6BA83",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,-4.132369,0,-11.255445,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -671,6 +689,7 @@
 						"uuid": "78000B0F-6326-4D3C-8CA4-2D2F675D8EA0",
 						"type": "Mesh",
 						"name": "Station",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,-11.196964,0,-8.119164,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "DEBE6CAE-B9C6-4B23-90EB-AC924665BFD4"
@@ -679,6 +698,7 @@
 						"uuid": "9C2C9DD0-CDD9-4CC9-9F7C-EFA9C1A54293",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,-12.082686,0,-1.85047,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -687,6 +707,7 @@
 						"uuid": "5145E6D1-4924-4B29-9C10-AEAA0768E586",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,-9.972071,0,4.305676,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -695,6 +716,7 @@
 						"uuid": "C275B283-4AF8-4B04-8409-DCDE23515249",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,-7.256224,0,11.541075,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "DEBE6CAE-B9C6-4B23-90EB-AC924665BFD4"
@@ -703,6 +725,7 @@
 						"uuid": "741CB656-10CA-481C-8D5B-8F48517B6C99",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,1.676695,0,13.805884,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -711,6 +734,7 @@
 						"uuid": "E6360729-6479-4E15-853F-57F8190E77D2",
 						"type": "Mesh",
 						"name": "Cylinder",
+						"layers": 1,
 						"matrix": [0.34,0,0,0,0,0.1,0,0,0,0,0.34,0,6.41172,0,13.646174,1],
 						"geometry": "67A8342A-FACB-4328-8519-8D20EBCCBB41",
 						"material": "8BECC99B-6058-44BA-9798-F087ED8393E7"
@@ -721,6 +745,7 @@
 				"type": "Mesh",
 				"name": "Plane",
 				"receiveShadow": true,
+				"layers": 1,
 				"matrix": [30,0,0,0,0,0,-30,0,0,30,0,0,0,0,0,1],
 				"geometry": "DF52F33C-B7F3-4A59-8208-BADE2BC2AEB1",
 				"material": "319A57BB-0661-4B70-9F2A-268721C33388"
@@ -728,20 +753,23 @@
 			{
 				"uuid": "A998D384-5A6D-42C4-AFA9-91B2E542835D",
 				"type": "Group",
-				"name": "GianoPi",
+				"name": "Robot",
+				"layers": 1,
 				"matrix": [-0.104529,0,-0.994522,0,0,1,0,0,0.994522,0,-0.104529,0,6.433823,-0.130309,12.866561,1],
 				"children": [
 					{
 						"uuid": "9DE4EAD7-AD6C-4B9E-96A5-2760A59F2CB2",
 						"type": "PerspectiveCamera",
-						"name": "GianoPi Camera",
+						"name": "Robot Camera",
+						"layers": 1,
 						"matrix": [-1,0,0,0,0,1,0,0,0,0,-1,0,0,0.86,0.818906,1],
 						"children": [
 							{
 								"uuid": "F63783DA-B099-4AAE-BAF7-3FD4A2080A96",
 								"type": "SpotLight",
-								"name": "GianoPi SpotLight",
+								"name": "Robot SpotLight",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [0.999759,-0.020662,0.007483,0,0.021905,0.964154,-0.264436,0,-0.001751,0.264536,0.964374,0,-0.059383,0.076179,0.377955,1],
 								"color": 16777215,
 								"intensity": 1,
@@ -753,6 +781,7 @@
 									"camera": {
 										"uuid": "0434C538-1DFA-418D-A16D-AA9FB935FD75",
 										"type": "PerspectiveCamera",
+										"layers": 1,
 										"fov": 68.754935,
 										"zoom": 1,
 										"near": 0.5,
@@ -777,6 +806,7 @@
 						"uuid": "69B7D640-06E9-4A36-A6F7-5E0C43FE27B8",
 						"type": "Mesh",
 						"name": "GianoPi High Plate",
+						"layers": 1,
 						"matrix": [0.015,0,0,0,0,0,0.01125,0,0,-0.01125,0,0,0.3,0.4379,0,1],
 						"geometry": "A38166D0-225E-4EAE-9AC8-2729CB683BD5",
 						"material": "A02D0184-34C1-412B-B222-922E92089E59"
@@ -785,6 +815,7 @@
 						"uuid": "7EA4E450-221D-45B5-ACC5-3B350E8EB37F",
 						"type": "Mesh",
 						"name": "GianoPi Low Plate",
+						"layers": 1,
 						"matrix": [0.015,0,0,0,0,0,0.01125,0,0,-0.01125,0,0,0.297444,0.19,0,1],
 						"geometry": "A38166D0-225E-4EAE-9AC8-2729CB683BD5",
 						"material": "A02D0184-34C1-412B-B222-922E92089E59"
@@ -792,7 +823,8 @@
 					{
 						"uuid": "07517B92-369B-41A5-AD29-F5784012A4B6",
 						"type": "Mesh",
-						"name": "GianoPi Direction",
+						"name": "Robot Direction",
+						"layers": 1,
 						"matrix": [0.26,0,0,0,0,0.26,0,0,0,0,0.26,0,0.138729,0.325248,1.29763,1],
 						"geometry": "2A7D5CCD-5F22-48B6-99C0-F1524E4316C3",
 						"material": "7A3279B1-5709-455D-9CAE-85F9CB72FC48"
@@ -802,6 +834,7 @@
 				"uuid": "FC0BCEEB-9B1F-48E1-BF0B-5AD53348EC1C",
 				"type": "Group",
 				"name": "Decor",
+				"layers": 1,
 				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 				"children": [
 					{
@@ -809,6 +842,7 @@
 						"type": "Mesh",
 						"name": "BOX",
 						"visible": false,
+						"layers": 1,
 						"matrix": [0.14,0,0,0,0,0,-0.14,0,0,0.14,0,0,-0.6,0,1.06,1],
 						"geometry": "77CA4E80-86AA-4A8A-BB80-92AE9B825775",
 						"material": "7F169121-80ED-4796-98F4-B8E14D718124"
@@ -817,6 +851,7 @@
 						"uuid": "537C6DAD-5F10-4F6D-A6C4-F06DC55CDCA4",
 						"type": "Mesh",
 						"name": "END",
+						"layers": 1,
 						"matrix": [0.14,0,0,0,0,0,-0.14,0,0,0.14,0,0,-0.7,0,1.04,1],
 						"geometry": "2F129EA5-B701-458C-BC8B-EDE4C83CF6DE",
 						"material": "69F11DBB-9954-4F0C-BBC4-826D98572069"
@@ -825,6 +860,7 @@
 						"uuid": "97B4E4CF-BDA5-4320-B458-365ACDC2AD9B",
 						"type": "Mesh",
 						"name": "START",
+						"layers": 1,
 						"matrix": [0.14,0,0,0,0,0,-0.14,0,0,0.14,0,0,-0.448024,0,1.02,1],
 						"geometry": "BD39D5F5-A177-4B95-A7C8-435504F55E3F",
 						"material": "4524C24D-BD40-4B66-AED9-B10AF34F1990"
@@ -835,6 +871,7 @@
 						"name": "Arches",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0.898794,0,-0.438371,0,0,1,0,0,0.438371,0,0.898794,0,-3.163042,0,-6.73032,1],
 						"children": [
 							{
@@ -842,6 +879,7 @@
 								"type": "Mesh",
 								"name": "Torus",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2.52071,0,0,0,0,3,0,0,0,0,1.775148,0,-10.240773,-0.246186,2.986593,1],
 								"geometry": "BB1D8234-83A0-445E-AB01-AFF916613E25",
 								"material": "364EF1E7-8CEF-40AA-9888-10F1C99696E3"
@@ -851,6 +889,7 @@
 								"type": "Mesh",
 								"name": "Torus",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2.7,0,0,0,0,3.46,0,0,0,0,2,0,-11.435216,-0.158089,8.479084,1],
 								"geometry": "BB1D8234-83A0-445E-AB01-AFF916613E25",
 								"material": "364EF1E7-8CEF-40AA-9888-10F1C99696E3"
@@ -860,6 +899,7 @@
 								"type": "Mesh",
 								"name": "Torus",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2.98,0,0,0,0,3.52,0,0,0,0,2,0,-10.988772,-0.194825,6.512868,1],
 								"geometry": "BB1D8234-83A0-445E-AB01-AFF916613E25",
 								"material": "364EF1E7-8CEF-40AA-9888-10F1C99696E3"
@@ -869,6 +909,7 @@
 								"type": "Mesh",
 								"name": "Torus",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2.98,0,0,0,0,3.52,0,0,0,0,2,0,-10.535317,-0.230016,4.919849,1],
 								"geometry": "BB1D8234-83A0-445E-AB01-AFF916613E25",
 								"material": "364EF1E7-8CEF-40AA-9888-10F1C99696E3"
@@ -878,6 +919,7 @@
 								"type": "Mesh",
 								"name": "Torus",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2.466351,0,-0.050502,0,0,3.711055,0,0,0.025259,0,1.233574,0,-11.478855,-0.158089,10.377955,1],
 								"geometry": "BB1D8234-83A0-445E-AB01-AFF916613E25",
 								"material": "364EF1E7-8CEF-40AA-9888-10F1C99696E3"
@@ -887,6 +929,7 @@
 						"uuid": "EAE7AF9D-4B1B-4514-815C-28544AB0A067",
 						"type": "Group",
 						"name": "Clouds",
+						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,4.332963,0,-3.632336,1],
 						"children": [
 							{
@@ -895,6 +938,7 @@
 								"name": "Sphere",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [0.56,0,0,0,0,0.56,0,0,0,0,0.56,0,5.247578,2.516236,-5.907598,1],
 								"geometry": "C7A62675-4684-427E-9508-03FD9DD9C4B7",
 								"material": "AC1F5C4E-67E7-4804-BCAC-E4759F367E24"
@@ -905,6 +949,7 @@
 								"name": "Sphere",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [0.999999,0.00047,-0.000999,0,-0.00047,1,-0.000104,0,0.000999,0.000105,0.999999,0,4.625498,3.601569,-2.27151,1],
 								"geometry": "C7A62675-4684-427E-9508-03FD9DD9C4B7",
 								"material": "AC1F5C4E-67E7-4804-BCAC-E4759F367E24"
@@ -915,6 +960,7 @@
 								"name": "Sphere",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [1.2,0,0,0,0,1.2,0,0,0,0,1.2,0,3.083041,2.258416,-5.901729,1],
 								"geometry": "C7A62675-4684-427E-9508-03FD9DD9C4B7",
 								"material": "AC1F5C4E-67E7-4804-BCAC-E4759F367E24"
@@ -926,6 +972,7 @@
 						"name": "Forest",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 						"children": [
 							{
@@ -933,6 +980,7 @@
 								"type": "Mesh",
 								"name": "Lathe",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2,0,0,0,0,4,0,0,0,0,2,0,7.755174,0,5.737693,1],
 								"geometry": "96ED92AD-CD3D-4C15-B8DC-F4E1600AA9FA",
 								"material": "89867A9B-E2FA-4067-97FE-6211303F4B4E"
@@ -942,6 +990,7 @@
 								"type": "Mesh",
 								"name": "Lathe",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2,0,0,0,0,4,0,0,0,0,2,0,12.216419,0,3.09111,1],
 								"geometry": "96ED92AD-CD3D-4C15-B8DC-F4E1600AA9FA",
 								"material": "89867A9B-E2FA-4067-97FE-6211303F4B4E"
@@ -951,6 +1000,7 @@
 								"type": "Mesh",
 								"name": "Lathe",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2,0,0,0,0,4,0,0,0,0,2,0,7.755174,0,3.09111,1],
 								"geometry": "96ED92AD-CD3D-4C15-B8DC-F4E1600AA9FA",
 								"material": "89867A9B-E2FA-4067-97FE-6211303F4B4E"
@@ -960,6 +1010,7 @@
 								"type": "Mesh",
 								"name": "Lathe",
 								"castShadow": true,
+								"layers": 1,
 								"matrix": [2,0,0,0,0,4,0,0,0,0,2,0,12.492685,0,5.737693,1],
 								"geometry": "96ED92AD-CD3D-4C15-B8DC-F4E1600AA9FA",
 								"material": "89867A9B-E2FA-4067-97FE-6211303F4B4E"
@@ -971,6 +1022,7 @@
 						"name": "Mountain",
 						"castShadow": true,
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-7.38304,0,-15.927759,1],
 						"children": [
 							{
@@ -979,6 +1031,7 @@
 								"name": "Box",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [1.522505,-0.230236,0.720396,0,0.404372,1.616228,-0.338071,0,-0.63911,0.474131,1.502244,0,-0.205443,1.922684,2.087517,1],
 								"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 								"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -989,6 +1042,7 @@
 								"name": "Box",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [1.986758,-0.300441,0.940064,0,0.609963,2.437952,-0.509953,0,-0.944086,0.70038,2.219098,0,0.12635,0.403084,-0.433883,1],
 								"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 								"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -999,6 +1053,7 @@
 								"name": "Box",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [1.986758,-0.300441,0.940064,0,0.609963,2.437952,-0.509953,0,-0.944086,0.70038,2.219098,0,1.3783,0.511765,1.58317,1],
 								"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 								"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1009,6 +1064,7 @@
 								"name": "Box",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [0.990902,0.040309,1.380756,0,-0.67518,1.496589,0.440854,0,-1.205091,-0.805354,0.888347,0,1.382387,1.559909,0.344156,1],
 								"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 								"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1017,6 +1073,7 @@
 								"uuid": "9A0210B9-EDE5-491C-86E6-A060AE2E28EE",
 								"type": "Mesh",
 								"name": "Box",
+								"layers": 1,
 								"matrix": [1.497266,0.425522,0.683465,0,-0.412416,1.644803,-0.120568,0,-0.691452,-0.059617,1.551883,0,0,2.539038,0,1],
 								"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 								"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1027,6 +1084,7 @@
 								"name": "Mountain",
 								"castShadow": true,
 								"receiveShadow": true,
+								"layers": 1,
 								"matrix": [0.602852,0,0.797853,0,0,1,0,0,-0.797853,0,0.602852,0,3.826833,-0.720527,8.415294,1],
 								"children": [
 									{
@@ -1035,6 +1093,7 @@
 										"name": "Box",
 										"castShadow": true,
 										"receiveShadow": true,
+										"layers": 1,
 										"matrix": [1.522505,-0.230236,0.720396,0,0.404372,1.616228,-0.338071,0,-0.63911,0.474131,1.502244,0,-0.205443,1.922684,2.087517,1],
 										"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 										"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1045,6 +1104,7 @@
 										"name": "Box",
 										"castShadow": true,
 										"receiveShadow": true,
+										"layers": 1,
 										"matrix": [1.986758,-0.300441,0.940064,0,0.609963,2.437952,-0.509953,0,-0.944086,0.70038,2.219098,0,0.12635,0.403084,-0.433883,1],
 										"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 										"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1053,6 +1113,7 @@
 										"uuid": "529247F7-00AC-41E8-9727-8BE403FDC57A",
 										"type": "Mesh",
 										"name": "Box",
+										"layers": 1,
 										"matrix": [1.986758,-0.300441,0.940064,0,0.609963,2.437952,-0.509953,0,-0.944086,0.70038,2.219098,0,1.3783,0.511765,1.58317,1],
 										"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 										"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1062,6 +1123,7 @@
 										"type": "Mesh",
 										"name": "Box",
 										"castShadow": true,
+										"layers": 1,
 										"matrix": [0.990902,0.040309,1.380756,0,-0.67518,1.496589,0.440854,0,-1.205091,-0.805354,0.888347,0,1.382387,1.559909,0.344156,1],
 										"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 										"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1070,6 +1132,7 @@
 										"uuid": "46C1C81F-990A-4D20-823D-235A771EF184",
 										"type": "Mesh",
 										"name": "Box",
+										"layers": 1,
 										"matrix": [1.497266,0.425522,0.683465,0,-0.412416,1.644803,-0.120568,0,-0.691452,-0.059617,1.551883,0,0,2.539038,0,1],
 										"geometry": "BB3F4C7B-07D9-4E33-980B-C449299BAFB2",
 										"material": "E4A0D641-3F0E-4432-A8CF-9C99F14A98FF"
@@ -1081,6 +1144,7 @@
 				"uuid": "B59BAEEC-3F27-49E7-80C6-AD9A67133967",
 				"type": "Group",
 				"name": "Walls",
+				"layers": 1,
 				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 				"children": [
 					{
@@ -1088,6 +1152,7 @@
 						"type": "Mesh",
 						"name": "Plane",
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [4.911616,0,-9.615279,0,0,12,0,0,0.890542,0,0.454901,0,-15.389458,6,-11.277181,1],
 						"geometry": "D5A26E09-A6B7-4052-BFF0-2EA9D59CA1EE",
 						"material": "7195D017-8F2C-47F0-9AE3-CF4FE39EE887"
@@ -1097,6 +1162,7 @@
 						"type": "Mesh",
 						"name": "Plane",
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [9.849742,0,0,0,0,12,0,0,0,0,1,0,3.311564,6,-16.044888,1],
 						"geometry": "D5A26E09-A6B7-4052-BFF0-2EA9D59CA1EE",
 						"material": "7195D017-8F2C-47F0-9AE3-CF4FE39EE887"
@@ -1106,6 +1172,7 @@
 						"type": "Mesh",
 						"name": "Plane",
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [0,0,-9.503601,0,0,12,0,0,1,0,0,0,15.375019,6,0,1],
 						"geometry": "D5A26E09-A6B7-4052-BFF0-2EA9D59CA1EE",
 						"material": "7195D017-8F2C-47F0-9AE3-CF4FE39EE887"
@@ -1115,6 +1182,7 @@
 						"type": "Mesh",
 						"name": "Plane",
 						"receiveShadow": true,
+						"layers": 1,
 						"matrix": [6.585379,0,8.836784,0,0,12,0,0,-0.798627,0,0.595156,0,-11.186009,6.2,13.78683,1],
 						"geometry": "D5A26E09-A6B7-4052-BFF0-2EA9D59CA1EE",
 						"material": "7195D017-8F2C-47F0-9AE3-CF4FE39EE887"

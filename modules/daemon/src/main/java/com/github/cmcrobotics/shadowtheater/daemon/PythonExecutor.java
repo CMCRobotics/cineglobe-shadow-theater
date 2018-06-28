@@ -1,14 +1,13 @@
 package com.github.cmcrobotics.shadowtheater.daemon;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
@@ -17,13 +16,9 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.github.chibyhq.playar.model.Application;
 import com.github.chibyhq.playar.model.ApplicationTypeConstants;
-import com.github.chibyhq.playar.model.LogEntry;
-import com.github.chibyhq.playar.model.RunSession;
-import com.github.chibyhq.store.model.repositories.LogEntryRepository;
-import com.github.chibyhq.store.model.repositories.RunSessionRepository;
 import com.github.cmcrobotics.shadowtheater.daemon.hateoas.ApplicationEntity;
 import com.github.cmcrobotics.shadowtheater.daemon.hateoas.LogEntryEntity;
 import com.github.cmcrobotics.shadowtheater.daemon.hateoas.RunSessionEntity;
@@ -37,16 +32,17 @@ import lombok.extern.java.Log;
 import uk.co.blackpepper.bowman.Client;
 
 @Log
+@Component
 public class PythonExecutor {
 
     @Autowired
-    Client<RunSessionEntity> hateoasRunSessionClient;
-    
+    Client<RunSessionEntity> runSessionClient;
+
     @Autowired
-    Client<LogEntryEntity> hateoasLogEntryClient;
-    
+    Client<LogEntryEntity> logEntryClient;
+
     @Autowired
-    Client<RunSessionEntitySearch> hateoasRunSessionSearchClient;
+    Client<RunSessionEntitySearch> runSessionSearchClient;
 
     private Map<String, Process> processesMap = new HashMap<>();
     private Map<String, ExecutorService> executorsMap = new HashMap<>();
@@ -55,7 +51,8 @@ public class PythonExecutor {
     @Setter
     protected String pythonExecutable = "python3";
 
-    public String start(ApplicationEntity application, RunSessionEntity session, Path applicationHome) throws Exception {
+    public String start(ApplicationEntity application, RunSessionEntity session, Path applicationHome)
+            throws IOException {
 
         ProcessBuilder pBuilder = new ProcessBuilder(getPythonExecutable(),
                 ApplicationTypeConstants.PYTHON_APPLICATION_PY);
@@ -67,15 +64,21 @@ public class PythonExecutor {
         // Save the application code to a local file inside the application home
         if (application.getGeneratedContents() != null) {
             File appPyFile = applicationHome.resolve(ApplicationTypeConstants.PYTHON_APPLICATION_PY).toFile();
+            boolean justCreated = false;
+            if (!appPyFile.exists()) {
+                appPyFile.createNewFile();
+                justCreated = true;
+            }
             if (appPyFile.canWrite()) {
-                if ((!appPyFile.exists()) || application.getLastUpdatedOn().after(new Date(appPyFile.lastModified()))) {
+                if (justCreated || application.getLastUpdatedOn() == null
+                        || application.getLastUpdatedOn().after(new Date(appPyFile.lastModified()))) {
                     log.log(Level.FINE, "Persisting Python application to " + appPyFile.getAbsolutePath());
                     Files.write(applicationHome.resolve(ApplicationTypeConstants.PYTHON_APPLICATION_PY),
                             ImmutableList.of(application.getGeneratedContents()), StandardCharsets.UTF_8);
                 }
             } else {
-                log.log(Level.FINEST,
-                        "Application home or destination file not writeable, cannot write out" + appPyFile.getAbsolutePath());
+                log.log(Level.FINEST, "Application home or destination file not writeable, cannot write out"
+                        + appPyFile.getAbsolutePath());
             }
         }
 
@@ -86,7 +89,8 @@ public class PythonExecutor {
         session.setExecutionId(processUUID.toString());
         session.setRunning(true);
         session.setStopped(false);
-        hateoasRunSessionClient.post(session);
+        runSessionClient.patch(session.getId(), session);
+        
         ////////////////////////
 
         try {
@@ -118,7 +122,7 @@ public class PythonExecutor {
                 // No need to marked as Stopped, if we made it here it is
                 // because the process was actively stopped
                 session.setStoppedAt(new Date());
-                hateoasRunSessionClient.post(session);
+                runSessionClient.patch(session.getId(), session);
             }
 
             try {
@@ -145,19 +149,40 @@ public class PythonExecutor {
 
         public void run() {
             Scanner scanner = new Scanner(is);
+            StringBuffer lineBuffer = new StringBuffer();
             try {
+                int count = 0;
                 while (scanner.hasNext()) {
-                    String line = scanner.nextLine();
-                    LogEntryEntity lee = new LogEntryEntity(session);
-                    lee.setLine(line);
-                    lee.setError(stdErr);
-                    hateoasLogEntryClient.post(lee);
+                    lineBuffer.append((stdErr ? "E! " : ""));
+                    lineBuffer.append(scanner.nextLine() + "\n");
+                    count++;
+                    if (count > 20) {
+                        // Flush log to runSession
+                        flushRunSession(lineBuffer.toString());
+                        count = 0;
+                        lineBuffer = new StringBuffer();
+                    }
+                    // LogEntryEntity lee = new LogEntryEntity(session);
+                    // lee.setLine(line);
+                    // lee.setError(stdErr);
+                    // session.getLogEntries().add(lee);
                 }
             } catch (Exception e) {
                 log.log(Level.WARNING, "Output interrupted for process " + processId, e);
             } finally {
+                try {
+                    flushRunSession(lineBuffer.toString());
+                } catch (Throwable t) {
+                    log.log(Level.WARNING, "Could not finally flush run session for process " + processId, t);
+                }
                 scanner.close();
             }
+        }
+
+        public void flushRunSession(String logUpdates) {
+            session = runSessionClient.get(session.getId());
+            session.setExecutionLog((session.getExecutionLog() == null ? "" : session.getExecutionLog()) + logUpdates);
+            runSessionClient.patch(session.getId(), session);
         }
     }
 
@@ -172,13 +197,18 @@ public class PythonExecutor {
                 while (!stop) {
                     Thread.sleep(500);
                     if (!process.isAlive()) {
-                        RunSessionEntity session = hateoasRunSessionSearchClient.get().findOneByExecutionIdAndRunning(executionId, true);
+                        RunSessionEntity session = runSessionSearchClient.get()
+                                .findOneByExecutionIdAndRunning(executionId, true);
                         if (session != null) {
                             log.finest("Marking process " + executionId + " as 'not running'");
                             session.setRunning(false);
                             session.setExitCode(process.exitValue());
                             session.setStoppedAt(new Date());
-                            hateoasRunSessionClient.post(session);
+                            runSessionClient.patch(session.getId(), session);
+                        } else {
+                            log.warning(String.format(
+                                    "Run session %s was already marked as STOPPED - interrupted by user ?",
+                                    executionId));
                         }
                         stop = true;
                     }

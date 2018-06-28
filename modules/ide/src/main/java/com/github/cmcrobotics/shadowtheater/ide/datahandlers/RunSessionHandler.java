@@ -32,43 +32,43 @@ public class RunSessionHandler {
 	ApplicationRepository applicationRepository;
 
 
-	/**
-	 * When a new run session is created, we immediately connect it to a run session. 
-	 * We will post logs outputs as log entries connected this this
-	 * run session asynchronously.
-	 * 
-	 * @param runSession
-	 *            The newly created run session.
-	 * @throws UnsupportedOperationException
-	 */
-	@HandleAfterCreate
-	public void connectRunSessionToExecution(RunSession runSession) {
-		Application app= applicationRepository.findOne(runSession.getApplicationUUID());
-		switch (app.getType()) {
-		case PYTHON:
-//			try {
-//				pgzExecutor.start(app, runSession,
-//						applicationHomeResolver.getPathForApplication(app));
-//			} catch (Exception e) {
-//				runSession.setStoppedAt(new Date());
-//				runSession.setStopped(true);
-//				runSession.setRunning(false);
-//				runSession.setStoppedAt(new Date());
-//				runSession.setExitMessage(e.getMessage());
-//				runSession.setExitCode(-1);
-//				runSessionRepository.save(runSession);
+//	/**
+//	 * When a new run session is created, we immediately connect it to a run session. 
+//	 * We will post logs outputs as log entries connected this this
+//	 * run session asynchronously.
+//	 * 
+//	 * @param runSession
+//	 *            The newly created run session.
+//	 * @throws UnsupportedOperationException
+//	 */
+//	@HandleAfterCreate
+//	public void connectRunSessionToExecution(RunSession runSession) {
+//		Application app= applicationRepository.findOne(runSession.getApplicationUUID());
+//		switch (app.getType()) {
+//		case PYTHON:
+////			try {
+////				pgzExecutor.start(app, runSession,
+////						applicationHomeResolver.getPathForApplication(app));
+////			} catch (Exception e) {
+////				runSession.setStoppedAt(new Date());
+////				runSession.setStopped(true);
+////				runSession.setRunning(false);
+////				runSession.setStoppedAt(new Date());
+////				runSession.setExitMessage(e.getMessage());
+////				runSession.setExitCode(-1);
+////				runSessionRepository.save(runSession);
+////
+////			}
+//			break;
+//		default:
+//			throw new UnsupportedOperationException(
+//					"Application type " + app.getType() + " is not yet supported");
+//		}
 //
-//			}
-			break;
-		default:
-			throw new UnsupportedOperationException(
-					"Application type " + app.getType() + " is not yet supported");
-		}
+//	}
 
-	}
-
-	@HandleAfterSave
-	public void interruptRunSession(RunSession runSession) {
+//	@HandleAfterSave
+//	public void interruptRunSession(RunSession runSession) {
 //		if ((runSession.getRunning()) && (runSession.getStopped())) {
 //			switch (runSession.getApplication().getType()) {
 //			case PYGAMEZERO:
@@ -84,6 +84,6 @@ public class RunSessionHandler {
 //						"Application type " + runSession.getApplication().getType() + " is not yet supported");
 //			}
 //		}
-
-	}
+//
+//	}
 }

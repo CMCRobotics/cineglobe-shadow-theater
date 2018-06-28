@@ -1,14 +1,11 @@
-package com.github.cmcrobotics.shadowtheater.daemon;
+package com.github.cmcrobotics.shadowtheater.daemon.hateoas;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
-import com.github.cmcrobotics.shadowtheater.daemon.hateoas.ApplicationEntity;
-import com.github.cmcrobotics.shadowtheater.daemon.hateoas.LogEntryEntity;
-import com.github.cmcrobotics.shadowtheater.daemon.hateoas.RunSessionEntity;
-import com.github.cmcrobotics.shadowtheater.daemon.hateoas.RunSessionEntitySearch;
+import com.github.cmcrobotics.shadowtheater.daemon.ApplicationConfigProperties;
 
 import uk.co.blackpepper.bowman.Client;
 import uk.co.blackpepper.bowman.ClientFactory;
@@ -45,6 +42,11 @@ public class HATEOASConfig {
     @Bean
     Client<RunSessionEntitySearch> getRunSessionSearchClient(){
         return factory.create(RunSessionEntitySearch.class);
+    }
+    
+    @Bean
+    Client<ApplicationEntitySearch> getApplicationEntitySearchClient(){
+        return factory.create(ApplicationEntitySearch.class);
     }
     
 
