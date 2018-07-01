@@ -1,0 +1,798 @@
+<!DOCTYPE aesl-source>
+<network>
+
+<!--list of global events-->
+
+<!--list of constants-->
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+<!--node thymio-II-->
+<node nodeId="51938" name="thymio-II">
+
+var rolling
+var speed
+var avoidanceSpeed
+var detectionTime
+
+
+rolling = 0
+speed = 100
+avoidanceSpeed = 200
+detectionTime = 500
+call leds.top(0,0,0)
+call leds.prox.v(0,0)
+call leds.top(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.rc(0)
+call leds.temperature(0,0)
+call leds.sound(0)
+
+
+sub roll_forward
+	motor.left.target = speed
+	motor.right.target = speed
+
+
+onevent button.forward
+	when button.forward == 1 do
+		if rolling == 0 then
+			rolling = 1
+			callsub roll_forward
+		else
+			rolling = 0
+			motor.left.target = 0
+			motor.right.target = 0
+		end
+	end
+
+
+onevent prox
+	when prox.horizontal[2] &lt; 1000 do
+		timer.period[0] = 1000
+	end
+
+	when prox.horizontal[2] &gt; 2000 do
+		motor.left.target = 0
+		motor.right.target = 0
+		timer.period[0] = 1000
+	end
+
+	when prox.horizontal[0] &gt; 2000 do
+		if rolling == 1 then
+			timer.period[0] = detectionTime
+			motor.left.target = avoidanceSpeed
+			motor.right.target = 0
+		end
+	end
+
+	when prox.horizontal[4] &gt; 2000 do
+		if rolling == 1 then
+			timer.period[0] = detectionTime
+			motor.left.target = 0
+			motor.right.target = avoidanceSpeed
+		end
+	end
+
+	when prox.horizontal[3] &gt; 2000 do
+		if rolling == 1 then
+			timer.period[0] = detectionTime * 1
+			motor.left.target = 0
+			motor.right.target = avoidanceSpeed
+		end
+	end
+
+	when prox.horizontal[1] &gt; 2000 do
+		if rolling == 1 then
+			timer.period[0] = detectionTime * 1
+			motor.left.target = avoidanceSpeed
+			motor.right.target = 0
+		end
+	end
+
+	when prox.ground.delta[1] &lt; 400 do
+		if rolling == 1 then
+			motor.left.target = -500
+			motor.right.target = 0
+			timer.period[0] = 1000
+		end
+	end
+
+	when prox.ground.delta[0] &lt; 400 do
+		if rolling == 1 then
+			motor.left.target = 0
+			motor.right.target = -500
+			timer.period[0] = 1000
+		end
+	end
+
+
+onevent timer0
+	if prox.horizontal[2] &lt; 1000 and (0 == 0 and prox.horizontal[4] &lt; 1000) then
+		if rolling == 1 then
+			callsub roll_forward
+		end
+	end
+
+
+<toolsPlugins>
+<ThymioBlockly>
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="thymio_variable_set" x="-38" y="-238">
+    <field name="VAR">rolling</field>
+    <value name="VALUE">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <next>
+      <block type="thymio_variable_set">
+        <field name="VAR">speed</field>
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+        <next>
+          <block type="thymio_variable_set">
+            <field name="VAR">avoidanceSpeed</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">200</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_variable_set">
+                <field name="VAR">detectionTime</field>
+                <value name="VALUE">
+                  <shadow type="math_number">
+                    <field name="NUM">0</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">500</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="thymio_led_off">
+                    <field name="LED">leds.top</field>
+                    <next>
+                      <block type="thymio_led_off">
+                        <field name="LED">leds.prox.v</field>
+                        <next>
+                          <block type="thymio_led_off">
+                            <field name="LED">leds.top</field>
+                            <next>
+                              <block type="thymio_led_off">
+                                <field name="LED">leds.circle</field>
+                                <next>
+                                  <block type="thymio_led_off">
+                                    <field name="LED">leds.bottom.left</field>
+                                    <next>
+                                      <block type="thymio_led_off">
+                                        <field name="LED">leds.bottom.right</field>
+                                        <next>
+                                          <block type="thymio_led_off">
+                                            <field name="LED">leds.rc</field>
+                                            <next>
+                                              <block type="thymio_led_off">
+                                                <field name="LED">leds.temperature</field>
+                                                <next>
+                                                  <block type="thymio_led_off">
+                                                    <field name="LED">leds.sound</field>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="thymio_event_button" x="437" y="-62">
+    <field name="BUTTON">button.forward</field>
+    <field name="MODE">PRESS</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_variable_set">
+            <field name="VAR">rolling</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn">
+                <mutation name="roll forward"></mutation>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="thymio_variable_set">
+            <field name="VAR">rolling</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_motors_stop"></block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="-62" y="162">
+    <field name="SENSOR">prox.horizontal[2]</field>
+    <field name="MODE">NOPROX</field>
+    <statement name="HANDLER">
+      <block type="thymio_actuator_timer">
+        <field name="VARIABLE">timer.period[0]</field>
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">1000</field>
+          </shadow>
+          <block type="math_number">
+            <field name="NUM">1000</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="-62" y="262">
+    <field name="SENSOR">prox.horizontal[2]</field>
+    <field name="MODE">PROX</field>
+    <statement name="HANDLER">
+      <block type="thymio_motors_stop">
+        <next>
+          <block type="thymio_actuator_timer">
+            <field name="VARIABLE">timer.period[0]</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1000</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="462" y="338">
+    <field name="SENSOR">prox.horizontal[0]</field>
+    <field name="MODE">PROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_actuator_timer">
+            <field name="VARIABLE">timer.period[0]</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">detectionTime</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_motors_start">
+                <field name="COMMAND">TURNRIGHT</field>
+                <value name="SPEED">
+                  <shadow type="math_number">
+                    <field name="NUM">300</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">avoidanceSpeed</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="-63" y="387">
+    <field name="SENSOR">prox.horizontal[4]</field>
+    <field name="MODE">PROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_actuator_timer">
+            <field name="VARIABLE">timer.period[0]</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">detectionTime</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_motors_start">
+                <field name="COMMAND">TURNLEFT</field>
+                <value name="SPEED">
+                  <shadow type="math_number">
+                    <field name="NUM">300</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">avoidanceSpeed</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="-63" y="587">
+    <field name="SENSOR">prox.horizontal[3]</field>
+    <field name="MODE">PROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_actuator_timer">
+            <field name="VARIABLE">timer.period[0]</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+              <block type="thymio_arithmetic">
+                <field name="OP">*</field>
+                <value name="A">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">detectionTime</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">1.2</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_motors_start">
+                <field name="COMMAND">TURNLEFT</field>
+                <value name="SPEED">
+                  <shadow type="math_number">
+                    <field name="NUM">300</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">avoidanceSpeed</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox" x="463" y="588">
+    <field name="SENSOR">prox.horizontal[1]</field>
+    <field name="MODE">PROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_actuator_timer">
+            <field name="VARIABLE">timer.period[0]</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">1000</field>
+              </shadow>
+              <block type="thymio_arithmetic">
+                <field name="OP">*</field>
+                <value name="A">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">detectionTime</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">1.2</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_motors_start">
+                <field name="COMMAND">TURNRIGHT</field>
+                <value name="SPEED">
+                  <shadow type="math_number">
+                    <field name="NUM">300</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">avoidanceSpeed</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" x="-62" y="787">
+    <field name="NAME">roll forward</field>
+    <statement name="STACK">
+      <block type="thymio_motors_start">
+        <field name="COMMAND">FORWARD</field>
+        <value name="SPEED">
+          <shadow type="math_number">
+            <field name="NUM">300</field>
+          </shadow>
+          <block type="thymio_variable_get">
+            <field name="VAR">speed</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_timer" x="338" y="813">
+    <field name="EVENT">timer0</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="logic_operation">
+            <field name="OP">AND</field>
+            <value name="A">
+              <shadow type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+              <block type="thymio_prox_check">
+                <field name="SENSOR">prox.horizontal[2]</field>
+                <field name="MODE">NOPROX</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+              <block type="logic_operation">
+                <field name="OP">AND</field>
+                <value name="A">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </shadow>
+                </value>
+                <value name="B">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </shadow>
+                  <block type="thymio_prox_check">
+                    <field name="SENSOR">prox.horizontal[4]</field>
+                    <field name="MODE">NOPROX</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="controls_if">
+            <value name="IF0">
+              <shadow type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+              <block type="thymio_compare">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <shadow type="math_number">
+                    <field name="NUM">0</field>
+                  </shadow>
+                  <block type="thymio_variable_get">
+                    <field name="VAR">rolling</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow type="math_number">
+                    <field name="NUM">0</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="procedures_callnoreturn">
+                <mutation name="roll forward"></mutation>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox_ground" x="-137" y="962">
+    <field name="SENSOR">prox.ground.delta[1]</field>
+    <field name="MODE">NOPROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_motors_start">
+            <field name="COMMAND">TURNBACKWARDRIGHT</field>
+            <value name="SPEED">
+              <shadow type="math_number">
+                <field name="NUM">300</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">500</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_actuator_timer">
+                <field name="VARIABLE">timer.period[0]</field>
+                <value name="VALUE">
+                  <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">1000</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="thymio_event_prox_ground" x="-13" y="1137">
+    <field name="SENSOR">prox.ground.delta[0]</field>
+    <field name="MODE">NOPROX</field>
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="thymio_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="thymio_variable_get">
+                <field name="VAR">rolling</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="thymio_motors_start">
+            <field name="COMMAND">TURNBACKWARDLEFT</field>
+            <value name="SPEED">
+              <shadow type="math_number">
+                <field name="NUM">300</field>
+              </shadow>
+              <block type="math_number">
+                <field name="NUM">500</field>
+              </block>
+            </value>
+            <next>
+              <block type="thymio_actuator_timer">
+                <field name="VARIABLE">timer.period[0]</field>
+                <value name="VALUE">
+                  <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                  </shadow>
+                  <block type="math_number">
+                    <field name="NUM">1000</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
+</ThymioBlockly>
+</toolsPlugins>
+</node>
+
+</network>
